@@ -22,7 +22,7 @@ class Body extends React.Component {
 
   handleUpdate(item) {
     $.ajax({
-      url: '/api/v1/items/${item.id}',
+      url: `/api/v1/items/${item.id}`,
       type: 'PUT',
       data: { item: item},
       success: () => {
@@ -40,18 +40,20 @@ class Body extends React.Component {
     this.setState({items: items});
   }
 
-  handleDelete() {
+  handleDelete(id) {
+    console.log(id);
     $.ajax({
-      url: '/api/v1/items/${id}',
+      url: `/api/v1/items/${id}`,
       type: 'DELETE',
       success:() => {
+        console.log(id);
         this.removeClient(id);
       }
     });
   }
 
   removeClient(id) {
-    let newItems = this.state.item.filter((item) => {
+    let newItems = this.state.items.filter((item) => {
       return item.id != id;
     });
 

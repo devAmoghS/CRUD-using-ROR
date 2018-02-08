@@ -9,6 +9,7 @@ class Item extends React.Component {
   }
 
   handleEdit() {
+    console.log(this.state.editable);
     if (this.state.editable) {
       let name = this.refs.name.value;
       let description = this.refs.description.value;
@@ -28,7 +29,7 @@ class Item extends React.Component {
         <h3>{name}</h3>
         <p>{description}</p>
         <button onClick={this.props.handleDelete}>Delete</button>
-        <button onClick={this.props.handleEdit}>{this.state.editable ? 'Submit' : 'Edit'}</button>
+        <button onClick={this.handleEdit.bind(this)}>{this.state.editable ? 'Submit' : 'Edit'}</button>
       </div>
     )
   }
